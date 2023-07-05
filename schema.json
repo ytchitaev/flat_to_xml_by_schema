@@ -1,0 +1,37 @@
+{
+  "$id": "https://example.com/person.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "_name": {
+      "type": "string",
+      "description": "The name of the element."
+    },
+    "_type": {
+      "type": "string",
+      "enum": ["row", "header"],
+      "description": "The type of the element specifying if it populates once (header) iterates over each dataset row (row)."
+    },
+    "_value": {
+      "type": "string",
+      "description": "The value associated with the element."
+    },
+    "_attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "The attributes associated with the element."
+    },
+    "_children": {
+      "type": "array",
+      "items": {
+        "$ref": "#"
+      },
+      "description": "The child elements of the target element. Recurses to the root of the json schema."
+    }
+  },
+  "required": ["_name", "_type"],
+  "description": "Mandatory fields in root and recursive elements.",
+  "additionalProperties": false
+}
